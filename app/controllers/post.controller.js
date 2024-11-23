@@ -3,7 +3,7 @@ const Post = db.posts;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
-  if (!req.body.title) {
+  if (!req.body.title || !req.body.content) {
     res.status(400).send({
       message: "content cant be empty"
     });
@@ -77,7 +77,7 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: "i couldnt update the post with id ${id}. either i didnt find or its empty"
+          message: "i couldnt update the post with id ${id}. either i didnt find it or its empty"
         });
       }
     })

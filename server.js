@@ -12,6 +12,8 @@ var corsOptions = {
 // adds cors and body-parser as middlewares
 app.use(cors(corsOptions));
 
+app.use(cors({ origin: 'http://localhost:3000' }));
+
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,10 +27,12 @@ db.sequelize.sync()
   });
 
 app.get("/", (req, res) => {
-  res.json({ message: "hello world" });
+  res.json({ message: "hehehehe hiiii" });
 });
 
 require("./app/routes/post.routes")(app);
+require("./app/routes/user.routes")(app);
+require("./app/routes/comment.routes")(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
